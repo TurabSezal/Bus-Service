@@ -2,7 +2,7 @@
 import { Column, Entity } from 'typeorm';
 import { GlobalEntity } from './global.entity';
 
-@Entity()
+@Entity('gender')
 export class Gender extends GlobalEntity {
   @Column()
   id: string;

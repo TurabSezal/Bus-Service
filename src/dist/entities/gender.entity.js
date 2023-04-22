@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], Gender.prototype, "title", void 0);
 Gender = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('gender')
 ], Gender);
 exports.Gender = Gender;
 //# sourceMappingURL=gender.entity.js.map

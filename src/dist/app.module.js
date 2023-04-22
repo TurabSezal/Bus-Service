@@ -26,7 +26,6 @@ AppModule = __decorate([
                 database: 'bus_service',
                 synchronize: true,
                 logging: true,
-                autoLoadEntities: true,
             }),
             config_1.ConfigModule.forRoot({
                 envFilePath: 'local.env',
@@ -35,6 +34,8 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             user_module_1.UserModule,
         ],
+        providers: [],
+        controllers: [],
     })
 ], AppModule);
 exports.AppModule = AppModule;

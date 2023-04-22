@@ -4,11 +4,13 @@ import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { User } from '../../entities/user.entity';
 import { ConfigService } from '@nestjs/config';
+import { Repository } from 'typeorm';
 export declare class AuthService {
     private userService;
     private jwtService;
     private readonly configService;
-    constructor(userService: UserService, jwtService: JwtService, configService: ConfigService);
+    private readonly userRepository;
+    constructor(userService: UserService, jwtService: JwtService, configService: ConfigService, userRepository: Repository<User>);
     register(createUserDto: CreateUserDto): Promise<GenericResponse<User>>;
     signIn(user: User): Promise<{
         accessToken: string;

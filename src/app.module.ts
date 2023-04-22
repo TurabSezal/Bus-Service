@@ -15,7 +15,6 @@ import { ConfigModule } from '@nestjs/config';
       database: 'bus_service',
       synchronize: true,
       logging: true,
-      autoLoadEntities: true,
     }),
     ConfigModule.forRoot({
       envFilePath: 'local.env',
@@ -24,5 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     UserModule,
   ],
+  providers: [],
+  controllers: [],
 })
 export class AppModule {}
