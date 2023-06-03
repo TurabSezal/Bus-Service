@@ -1,4 +1,3 @@
-import { GenericResponse } from './../GenericResponse/GenericResponse';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
@@ -8,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ApiResponse, SuccessResponse } from '../api-response/api-response';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async register(createUserDto: CreateUserDto): Promise<GenericResponse<User>> {
+  async register(createUserDto: CreateUserDto): Promise<ApiResponse<User>> {
     const exist = await this.userRepository.find({
       where: { mail: createUserDto.mail },
     });
@@ -33,7 +33,7 @@ export class AuthService {
       ...createUserDto,
       password: hashedPassword,
     });
-    return GenericResponse.success(user);
+    return new SuccessResponse(user);
   }
 
   async signIn(user: User): Promise<{ accessToken: string }> {

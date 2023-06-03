@@ -13,7 +13,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
-const GenericResponse_1 = require("./../GenericResponse/GenericResponse");
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const user_service_1 = require("../user/user.service");
@@ -22,6 +21,7 @@ const config_1 = require("@nestjs/config");
 const bcrypt = require("bcrypt");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const api_response_1 = require("../api-response/api-response");
 let AuthService = class AuthService {
     constructor(userService, jwtService, configService, userRepository) {
         this.userService = userService;
@@ -39,7 +39,7 @@ let AuthService = class AuthService {
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
         const user = await this.userService.create(Object.assign(Object.assign({}, createUserDto), { password: hashedPassword }));
-        return GenericResponse_1.GenericResponse.success(user);
+        return new api_response_1.SuccessResponse(user);
     }
     async signIn(user) {
         const payload = { mail: user.mail, password: user.password };

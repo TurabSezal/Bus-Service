@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { GlobalEntity } from './global.entity';
+import { Gender } from './gender.entity';
 
 @Entity('users')
 export class User extends GlobalEntity {
@@ -8,20 +9,29 @@ export class User extends GlobalEntity {
   id: string;
 
   @Column()
-  name: string;
-
-  @Column()
-  age: number;
-
-  @Column()
   mail: string;
 
   @Column()
-  phone: string;
+  password: string;
+
+  @Column()
+  name: string;
 
   @Column()
   gender_id: string;
 
   @Column()
-  password: string;
+  phone: string;
+
+  @Column()
+  age: number;
+
+  @OneToOne(() => Gender, {
+    eager: false,
+  })
+  @JoinColumn({
+    name: 'gender_id',
+    referencedColumnName: 'id',
+  })
+  public gender: Gender;
 }

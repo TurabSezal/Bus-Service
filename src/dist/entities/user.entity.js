@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
 const global_entity_1 = require("./global.entity");
+const gender_entity_1 = require("./gender.entity");
 let User = class User extends global_entity_1.GlobalEntity {
 };
 __decorate([
@@ -21,19 +22,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], User.prototype, "age", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
 ], User.prototype, "mail", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "phone", void 0);
+], User.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -41,7 +38,21 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], User.prototype, "phone", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], User.prototype, "age", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => gender_entity_1.Gender, {
+        eager: false,
+    }),
+    (0, typeorm_1.JoinColumn)({
+        name: 'gender_id',
+        referencedColumnName: 'id',
+    }),
+    __metadata("design:type", gender_entity_1.Gender)
+], User.prototype, "gender", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)('users')
 ], User);

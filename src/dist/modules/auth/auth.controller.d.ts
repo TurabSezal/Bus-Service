@@ -9,5 +9,5 @@ export declare class AuthController {
             accessToken: string;
         };
     }>;
-    signUp(createUserDto: CreateUserDto): Promise<import("../GenericResponse/GenericResponse").GenericResponse<import("../../entities/user.entity").User>>;
+    signUp(createUserDto: CreateUserDto): Promise<import("../api-response/api-response").ApiResponse<import("../../entities/user.entity").User>>;
 }
